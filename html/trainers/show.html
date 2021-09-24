@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Private School</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="../../css/style.css">
+    <script src="../../js/includeHtml.js"></script>
+</head>
+<body>
+    <div include-html="/html/templates/navbar.html"></div>
+    <div include-html="/html/templates/footer.html"></div>
+
+    <div id="myform">
+        <div class="container" id="formBox">
+            <div class="container">
+                <header>
+                    <h1 class="display-4 text-black-50 text-center mt-5 ">Trainer Form</h1>
+                </header>
+            </div>
+            <div class="container">
+                <form action="show.html" class="justify-content-center" method="GET">
+                    <fieldset class="form-group">
+                        <legend>Trainer Details</legend>
+                        <label class="col-form-label" for="fname">First Name:</label>
+                        <input class="form-control bg-light" id="fname" type="text" name="fname" pattern="[a-zA-Z\s]*" minlength="2" maxlength="25" autocomplete="off" placeholder="2-25 Latin characters" required />
+                        <label class="col-form-label" for="lname">Last Name:</label>
+                        <input class="form-control bg-light" id="lname" type="text" name="lname" pattern="[a-zA-Z\s]*" minlength="2" maxlength="25" autocomplete="off" placeholder="2-25 Latin characters" required />
+                    </fieldset>
+                    <fieldset class="form-group">
+                        <legend>Subject</legend>
+                        <label class="col-form-label" for="sub">Subject:</label>
+                        <input class="form-control bg-light" id="sub" type="text" name="sub" pattern="[a-zA-Z0-9\s]+" inlength="2" maxlength="25" autocomplete="off" placeholder="2-25 Alpharithetic characters" required />
+                    </fieldset>
+                        <div class="row justify-content-start justify-content-md-center">
+                            <input id="submit" class="col-12 col-md-3 col-lg-2 btn btn-lg btn-primary m-2 col-1" type="submit" value="Save" />
+                            <input id="cancel" class="col-12 col-md-3 col-lg-2 btn btn-lg btn-danger m-2 col-1" value="Cancel">
+                        </div>
+                </form>
+            </div>    
+        </div><br><br><hr><br>  
+    </div>
+
+    <div class="container-fluid mb-5">
+        <button id="add" class="btn btn-lg btn-success text-light btn-dark ml-5 mb-2 mt-4">Add Trainer</button>
+        <table id="mytable" class="table table-bordered table-responsive-md table-responsive-sm text-center table-striped table-hover mt-2">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Subject</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="tablebody">
+                <tr data-fname='George' data-lname='Pasparakis' data-sub='JavaScript'>
+                    <td>George</td>
+                    <td>Pasparakis</td>
+                    <td>JavaScript</td>
+                    <td class="d-sm-table-cell"><button class="edit btn btn-success">Edit</button><button class="delete btn btn-danger">Delete</button></td>
+                </tr>
+                <tr data-fname='George' data-lname='Rigopoulos' data-sub='SQL'>
+                    <td>George</td>
+                    <td>Rigopoulos</td>
+                    <td>SQL</td>
+                    <td class="d-sm-table-cell"><button class="edit btn btn-success">Edit</button><button class="delete btn btn-danger">Delete</button></td>
+                </tr>
+                <tr data-fname='Tasos' data-lname='Lelakis' data-sub='Java'>
+                    <td>Tasos</td>
+                    <td>Lelakis</td>
+                    <td>Java</td>
+                    <td class="d-sm-table-cell"><button class="edit btn btn-success">Edit</button><button class="delete btn btn-danger">Delete</button></td>
+                </tr>
+                <tr data-fname='Nikos' data-lname='Alexiou' data-sub='Python'>
+                    <td>Nikos</td>
+                    <td>Alexiou</td>
+                    <td>Python</td>
+                    <td class="d-sm-table-cell"><button class="edit btn btn-success">Edit</button><button class="delete btn btn-danger">Delete</button></td>
+                </tr>
+            </tbody>    
+        </table> 
+    </div>
+
+    <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">Delete Data</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body text-center">
+                    You are about to delete a <span class="font-weight-bold">Trainer</span><br />
+                    Are you sure you want to proceed?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="button" id="approveDelete" class="btn btn-primary">Delete</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>       
+    <script>includeHTML();</script>
+    <script src="../../js/formFuncs.js"></script>
+    <script src="../../js/trainers.js"></script>
+</body>
+</html>
